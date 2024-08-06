@@ -1,0 +1,98 @@
+<div class="jeeva">
+  <div style="padding: 20px;">
+   
+  <div style="border-radius: 10px;color: green; display: flex; justify-content: center; border:1px solid">
+    <h1>FUEL MANAGEMENT SYSTEM</h1>
+</div>
+
+  <div class="row">
+  <div class="col">
+    <br>
+<div style="border-radius: 10px; width:850px ; height: 780px; border:1px solid;padding: 10px;">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <div >
+      <div  style="display: flex;justify-content:space-between;">
+        <div>
+          <div  class="input-group">
+            <button class="btn btn-warning btn-sm " (click)="find(myForm.value)">FIND</button> 
+            
+            
+        </div>
+       
+      </div>
+      <button class="btn btn-primary btn-sm " (click)="findAll()">FIND ALL</button> 
+      </div><br><br><br>
+      <form style="display: flex;justify-content: center; align-items: center; font-size: large;" #myForm="ngForm">
+          <div>
+              <label><b>VEHICLE ID</b></label><br><br>
+              <input style="padding: 20px; width:450px;"  
+              type="text" 
+              placeholder="Enter Vehicle ID"  
+              name="vi" #vi="ngModel" ngModel class="form-control"
+              required
+                pattern="[0-9]+">
+                  <div *ngIf="vi.touched">
+                      <div *ngIf="vi.errors?.['required']">
+                          <b style="color: red;">Vehicle Id is Required.</b></div>
+                      <div *ngIf="vi.errors?.['pattern']">
+                      <font color="red">Invalid Vehicle Id.</font>
+                  </div>
+                </div>
+              <label><b>CURRENT KILOMETER</b></label><br><br>
+              <input style="padding: 20px; width:450px;" type="text"  
+              placeholder="Enter Currrent Kilometer"    
+              name="km" #km="ngModel"  ngModel class="form-control"
+              required
+              pattern="[0-9]+">
+                   <div *ngIf="km.touched">
+                      <div *ngIf="km.errors?.['required']">
+                          <b style="color: red;">Current Killometer is Required.</b></div>
+                      <div *ngIf="km.errors?.['pattern']">
+                      <font color="red">Invalid Current Killometer  Id.</font>
+                  </div>
+              </div>
+              <label><b>LITERS PUMPED</b></label><br><br>
+              <input style="padding: 20px; width:450px;" type="text"  
+              placeholder="Enter Litres Pumped"   
+              name="li" #li="ngModel"  ngModel  class="form-control"
+              required
+              pattern="[0-9]+">
+                  <div *ngIf="li.touched">
+                      <div *ngIf="li.errors?.['required']">
+                          <b style="color: red;">Liters Pumped is Required.</b></div>
+                      <div *ngIf="li.errors?.['pattern']">
+                      <font color="red">Invalid Liters Pumped  Id.</font>
+                  </div>
+                </div><br>    
+              
+          
+          <div style="display: flex; justify-content: space-between;">
+              <button class="btn btn-success btn-lg" (click)="savedetails(myForm.value)">SAVE</button> 
+              <button class="btn btn-info btn-lg" (click)="updatedetails(myForm.value) ">UPDATE</button>
+              <button class="btn btn-danger btn-lg" (click)="deletedetails(myForm.value) ">DELETE</button>
+          </div>
+      </div>
+    </form>
+</div>
+</div>
+  </div>
+  <div class="col" style="color:maroon;">
+    <br>
+    <div style="border-radius: 10px; height: 780px; border:1px solid;border: 1px solid black;">
+      <h4 style="padding-left: 40px;">FUEL DATA BASE</h4> 
+      <hr>
+      <p>{{result}}</p>
+      <div style="width: 100%;" *ngIf="flag">
+        <table width="80%" align="center" class="table table-borderd" style="background-color: aliceblue; border: 1px solid;">
+         <tr><th>Vehicle Id</th><th>Current Kilometer</th><th>Liters Pumped</th></tr> 
+          <tr *ngFor="let emp of vehicleArr">
+              <td> {{emp.id}} </td><td> {{emp.km}} </td><td> {{emp.li}} </td>
+          </tr>
+       </table>
+       </div>
+</div>
+  </div>
+  </div>
+</div>
+</div>
